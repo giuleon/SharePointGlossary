@@ -1,0 +1,605 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/row-formatting.schema.json",
+  "hideColumnHeader": true,
+  "hideSelection": true,
+  "commandBarProps": {
+    "commands": [
+      {
+        "key": "new",
+        "hide": true
+      },
+      {
+        "key": "edit",
+        "hide": true
+      },
+      {
+        "key": "editInGridView",
+        "hide": true
+      },
+      {
+        "key": "share",
+        "hide": true
+      },
+      {
+        "key": "delete",
+        "hide": true
+      },
+      {
+        "key": "manageForms",
+        "hide": true
+      },
+      {
+        "key": "automate",
+        "hide": true
+      },
+      {
+        "key": "integrate",
+        "hide": true
+      },
+      {
+        "key": "alertMe",
+        "hide": true
+      },
+      {
+        "key": "manageAlert",
+        "hide": true
+      },
+      {
+        "key": "comment",
+        "hide": true
+      },
+      {
+        "key": "copyLink",
+        "hide": true
+      },
+      {
+        "key": "versionHistory",
+        "hide": true
+      },
+      {
+        "key": "undo",
+        "hide": true
+      }
+    ]
+  },
+  "rowFormatter": {
+    "elmType": "div",
+    "style": {
+      "box-sizing": "border-box",
+      "height": "=if(@rowIndex == 0, '156px', '88px')",
+      "min-width": "1110px",
+      "width": "=toString(@window.innerWidth * 0.8) + 'px'",
+      "display": "flex",
+      "flex-direction": "column",
+      "padding": "0px 12px 0px 12px",
+      "margin-left": "44px",
+      "border-radius": "6px"
+    },
+    "attributes": {
+      "class": "sp-css-backgroundColor-BgLightGray30--hover"
+    },
+    "children": [
+      {
+        "elmType": "div",
+        "style": {
+          "height": "68px",
+          "min-width": "1110px",
+          "width": "100%",
+          "box-sizing": "border-box",
+          "display": "=if(@rowIndex == 0, 'flex', 'none')",
+          "align-items": "center",
+          "justify-content": "center",
+          "border-bottom": "solid 1px #373fae",
+          "background-color": "#f5f5f5"
+        },
+        "children": [
+          {
+            "elmType": "div",
+            "forEach": "letter in split('A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z',',')",
+            "style": {
+              "height": "36px",
+              "width": "42px",
+              "box-sizing": "border-box",
+              "display": "flex",
+              "justify-content": "center",
+              "align-items": "center",
+              "border-right": "=if(startsWith([$letter], 'Z'), 'solid 1px #f5f5f5', 'solid 1px #373fae')"
+            },
+            "children": [
+              {
+                "elmType": "a",
+                "style": {
+                  "height": "36px",
+                  "width": "36px",
+                  "box-sizing": "border-box",
+                  "display": "flex",
+                  "justify-content": "center",
+                  "align-items": "center",
+                  "border-radius": "6px",
+                  "font-size": "22px",
+                  "font-weight": "bold",
+                  "color": "#2D35A0",
+                  "cursor": "pointer",
+                  "text-decoration": "none"
+                },
+                "attributes": {
+                  "href": "=@currentWeb + '/Lists/GLOSSARY/AllItems.aspx?FilterField1=First&FilterValue1=' + [$letter] + '&FilterType1=string&FilterOp1=In&env=WebView'",
+                  "class": "sp-css-backgroundColor-BgViolet--hover"
+                },
+                "txtContent": "[$letter]"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "elmType": "div",
+        "customCardProps": {
+          "formatter": {
+            "elmType": "div",
+            "style": {
+              "min-height": "200px",
+              "min-width": "400px",
+              "max-width": "800px",
+              "box-sizing": "border-box",
+              "display": "flex",
+              "align-items": "flex-start",
+              "justify-content": "flex-start",
+              "flex-direction": "column",
+              "padding-bottom": "10px",
+              "overflow": "hidden",
+              "border": "solid 1px #7077d5",
+              "border-radius": "8px",
+              "background-color": "#fafafa"
+            },
+            "children": [
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "height": "60px",
+                  "display": "flex",
+                  "align-items": "center",
+                  "justify-content": "flex-start",
+                  "box-sizing": "content-box",
+                  "padding": "0px 16px 0px 18px",
+                  "border-bottom": "dotted 1px #7077d5",
+                  "font-size": "18px",
+                  "font-weight": "700",
+                  "color": "#373fae",
+                  "background-color": "White"
+                },
+                "txtContent": "[$Title]"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "flex",
+                  "padding": "18px",
+                  "align-items": "flex-start",
+                  "justify-content": "=if([$Description] == '', 'center', 'flex-start')",
+                  "font-size": "15px",
+                  "color": "=if([$Description] == '', 'Grey', '#605e5c')"
+                },
+                "txtContent": "=if([$Description] == '', 'Empty', '[$Description]')"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "=if([$Tags] == '', 'flex', 'none')",
+                  "flex-wrap": "wrap",
+                  "align-items": "center",
+                  "justify-content": "=if([$Tags] == '', 'center', '')",
+                  "padding-top": "8px",
+                  "font-size": "15px",
+                  "color": "=if([$Tags] == '', 'Grey', '')"
+                },
+                "txtContent": "=if([$Tags] == '', 'No tags applied', '')"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "=if([$Tags] == '', 'none', 'flex')",
+                  "flex-wrap": "wrap",
+                  "align-items": "center",
+                  "justify-content": "=if([$Tags] == '', 'center', '')",
+                  "padding": "8px 18px 8px 20px",
+                  "font-size": "15px",
+                  "font-weight": "500",
+                  "color": "#373fae"
+                },
+                "txtContent": "Click one tag to filter"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "flex",
+                  "flex-wrap": "wrap",
+                  "align-items": "flex-start",
+                  "justify-content": "=if([$Tags] == '', 'center', 'flex-start')",
+                  "padding": "0px 18px 8px 14px",
+                  "font-size": "15px",
+                  "color": "=if([$Tags] == '', 'Grey', '')"
+                },
+                "children": [
+                  {
+                    "forEach": "tag in [$Tags]",
+                    "elmType": "a",
+                    "style": {
+                      "box-sizing": "border-box",
+                      "padding": "0px 12px 0px 12px",
+                      "overflow": "hidden",
+                      "display": "flex",
+                      "border-radius": "8px",
+                      "height": "28px",
+                      "align-items": "center",
+                      "white-space": "nowrap",
+                      "margin": "4px 4px 4px 4px",
+                      "border": "dotted 1px #7077d5",
+                      "box-shadow": "rgba(0, 0, 0, 0.133) 0px 6.4px 14.4px 0px, rgba(0, 0, 0, 0.11) 0px 1.2px 3.6px 0px",
+                      "font-weight": "500",
+                      "color": "#373fae",
+                      "cursor": "pointer",
+                      "text-decoration": "none"
+                    },
+                    "attributes": {
+                      "class": "sp-css-backgroundColor-white sp-css-backgroundColor-BgLightPurple30--hover",
+                      "href": "=@currentWeb + '/Lists/GLOSSARY/AllItems.aspx?FilterField1=Tags&FilterValue1=' + [$tag] + '&FilterType1=MultiChoice&FilterOp1=Eq&env=WebView'"
+                    },
+                    "txtContent": "[$tag]"
+                  }
+                ]
+              }
+            ]
+          },
+          "openOnEvent": "click",
+          "directionalHint": "leftCenter",
+          "isBeakVisible": true,
+          "beakStyle": {
+            "backgroundColor": "#7077d5"
+          }
+        },
+        "style": {
+          "height": "44px",
+          "width": "100%",
+          "box-sizing": "border-box",
+          "display": "flex",
+          "align-items": "flex-end",
+          "justify-content": "flex-start",
+          "padding-bottom": "4px",
+          "font-size": "18px",
+          "font-weight": "700",
+          "cursor": "pointer",
+          "color": "#373fae"
+        },
+        "attributes": {
+          "title": "Click to read"
+        },
+        "txtContent": "[$Title]"
+      },
+      {
+        "elmType": "div",
+        "customCardProps": {
+          "formatter": {
+            "elmType": "div",
+            "style": {
+              "min-height": "200px",
+              "min-width": "400px",
+              "max-width": "800px",
+              "box-sizing": "border-box",
+              "display": "flex",
+              "align-items": "flex-start",
+              "justify-content": "flex-start",
+              "flex-direction": "column",
+              "padding-bottom": "10px",
+              "overflow": "hidden",
+              "border": "solid 1px #7077d5",
+              "border-radius": "8px",
+              "background-color": "#fafafa"
+            },
+            "children": [
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "height": "60px",
+                  "display": "flex",
+                  "align-items": "center",
+                  "justify-content": "flex-start",
+                  "box-sizing": "content-box",
+                  "padding": "0px 16px 0px 18px",
+                  "margin-bottom": "0px",
+                  "border-bottom": "dotted 1px #7077d5",
+                  "font-size": "18px",
+                  "font-weight": "700",
+                  "color": "#373fae",
+                  "background-color": "White"
+                },
+                "txtContent": "[$Title]"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "flex",
+                  "padding": "18px",
+                  "align-items": "flex-start",
+                  "justify-content": "=if([$Description] == '', 'center', 'flex-start')",
+                  "font-size": "15px",
+                  "color": "=if([$Description] == '', 'Grey', '#605e5c')"
+                },
+                "txtContent": "=if([$Description] == '', 'Empty', '[$Description]')"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "=if([$Tags] == '', 'flex', 'none')",
+                  "flex-wrap": "wrap",
+                  "align-items": "center",
+                  "justify-content": "=if([$Tags] == '', 'center', '')",
+                  "padding-top": "8px",
+                  "font-size": "15px",
+                  "color": "=if([$Tags] == '', 'Grey', '')",
+                  "background-color": ""
+                },
+                "txtContent": "=if([$Tags] == '', 'No tags applied', '')"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "=if([$Tags] == '', 'none', 'flex')",
+                  "flex-wrap": "wrap",
+                  "align-items": "center",
+                  "justify-content": "=if([$Tags] == '', 'center', '')",
+                  "padding": "8px 18px 8px 20px",
+                  "font-size": "15px",
+                  "font-weight": "500",
+                  "color": "#373fae"
+                },
+                "txtContent": "Click one tag to filter"
+              },
+              {
+                "elmType": "div",
+                "style": {
+                  "width": "100%",
+                  "box-sizing": "border-box",
+                  "display": "flex",
+                  "flex-wrap": "wrap",
+                  "align-items": "flex-start",
+                  "justify-content": "=if([$Tags] == '', 'center', 'flex-start')",
+                  "padding": "0px 18px 8px 14px",
+                  "font-size": "15px",
+                  "color": "=if([$Tags] == '', 'Grey', '')"
+                },
+                "children": [
+                  {
+                    "forEach": "tag in [$Tags]",
+                    "elmType": "a",
+                    "style": {
+                      "box-sizing": "border-box",
+                      "padding": "0px 12px 0px 12px",
+                      "overflow": "hidden",
+                      "display": "flex",
+                      "border-radius": "8px",
+                      "height": "28px",
+                      "align-items": "center",
+                      "white-space": "nowrap",
+                      "margin": "4px 4px 4px 4px",
+                      "border": "dotted 1px #7077d5",
+                      "box-shadow": "rgba(0, 0, 0, 0.133) 0px 6.4px 14.4px 0px, rgba(0, 0, 0, 0.11) 0px 1.2px 3.6px 0px",
+                      "font-weight": "500",
+                      "color": "#373fae",
+                      "cursor": "pointer",
+                      "text-decoration": "none"
+                    },
+                    "attributes": {
+                      "class": "sp-css-backgroundColor-white sp-css-backgroundColor-BgLightPurple30--hover",
+                      "href": "=@currentWeb + '/Lists/GLOSSARY/AllItems.aspx?FilterField1=Tags&FilterValue1=' + [$tag] + '&FilterType1=MultiChoice&FilterOp1=Eq&env=WebView'"
+                    },
+                    "txtContent": "[$tag]"
+                  }
+                ]
+              }
+            ]
+          },
+          "openOnEvent": "click",
+          "directionalHint": "leftCenter",
+          "isBeakVisible": true,
+          "beakStyle": {
+            "backgroundColor": "#7077d5"
+          }
+        },
+        "style": {
+          "height": "44px",
+          "width": "100%",
+          "box-sizing": "border-box",
+          "display": "block",
+          "white-space": "nowrap",
+          "overflow": "hidden",
+          "text-overflow": "ellipsis",
+          "font-size": "15px",
+          "font-weight": "400",
+          "cursor": "pointer",
+          "color": "#605e5c"
+        },
+        "attributes": {
+          "title": "Click to read"
+        },
+        "txtContent": "[$Description]"
+      }
+    ]
+  },
+  "groupProps": {
+    "headerFormatter": {
+      "elmType": "div",
+      "style": {
+        "position": "relative",
+        "height": "=if(@rowIndex == 0, '120px', '52px')",
+        "min-width": "1110px",
+        "width": "=toString(@window.innerWidth * 0.9) + 'px'",
+        "flex-wrap": "nowrap",
+        "display": "flex",
+        "box-sizing": "border-box",
+        "align-items": "center",
+        "justify-content": "flex-start",
+        "white-space": "nowrap",
+        "overflow": "hidden"
+      },
+      "children": [
+        {
+          "elmType": "div",
+          "style": {
+            "min-width": "1110px",
+            "width": "100%",
+            "height": "=if(@rowIndex == 0, '120px', '52px')",
+            "display": "flex",
+            "flex-direction": "column"
+          },
+          "children": [
+            {
+              "elmType": "div",
+              "style": {
+                "height": "68px",
+                "min-width": "1110px",
+                "width": "100%",
+                "box-sizing": "border-box",
+                "display": "=if(@rowIndex == 0, 'flex', 'none')",
+                "align-items": "center",
+                "justify-content": "center",
+                "overflow": "hidden",
+                "border-bottom": "solid 1px #373fae",
+                "background-color": "#f5f5f5"
+              },
+              "children": [
+                {
+                  "elmType": "div",
+                  "forEach": "letter in split('A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z',',')",
+                  "style": {
+                    "height": "36px",
+                    "width": "42px",
+                    "box-sizing": "border-box",
+                    "display": "flex",
+                    "justify-content": "center",
+                    "align-items": "center",
+                    "border-right": "=if(startsWith([$letter], 'Z'), 'solid 1px #f5f5f5', 'solid 1px #373fae')"
+                  },
+                  "children": [
+                    {
+                      "elmType": "a",
+                      "style": {
+                        "height": "36px",
+                        "width": "36px",
+                        "box-sizing": "border-box",
+                        "display": "flex",
+                        "justify-content": "center",
+                        "align-items": "center",
+                        "border-radius": "6px",
+                        "font-size": "22px",
+                        "font-weight": "bold",
+                        "color": "#2D35A0",
+                        "text-decoration": "none"
+                      },
+                      "attributes": {
+                        "href": "=@currentWeb + '/Lists/GLOSSARY/AllItems.aspx?FilterField1=First&FilterValue1=' + [$letter] + '&FilterType1=string&FilterOp1=In&env=WebView'",
+                        "class": "sp-css-backgroundColor-BgViolet--hover"
+                      },
+                      "txtContent": "[$letter]"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "elmType": "div",
+              "style": {
+                "box-sizing": "border-box",
+                "height": "52px",
+                "min-width": "1110px",
+                "width": "100%",
+                "display": "flex",
+                "align-items": "center",
+                "justify-content": "space-between",
+                "flex-wrap": "nowrap",
+                "border-radius": "=if(@rowIndex == 0, '0px 0px 6px 6px', '6px')",
+                "background-color": "#d8d8ee"
+              },
+              "children": [
+                {
+                  "elmType": "div",
+                  "style": {
+                    "width": "70px",
+                    "height": "30px",
+                    "box-sizing": "border-box",
+                    "display": "flex",
+                    "align-items": "center",
+                    "justify-content": "center",
+                    "margin-left": "12px",
+                    "padding": "0px 12px",
+                    "border-radius": "6px",
+                    "font-size": "15px",
+                    "font-weight": "500",
+                    "color": "White",
+                    "background-color": "#5b5fc7"
+                  },
+                  "txtContent": "=if(@group.count == 1, @group.count + ' Term', @group.count + ' Terms' )"
+                },
+                {
+                  "elmType": "div",
+                  "style": {
+                    "width": "32px",
+                    "height": "32px",
+                    "box-sizing": "border-box",
+                    "display": "flex",
+                    "align-items": "center",
+                    "justify-content": "center",
+                    "border-radius": "6px",
+                    "font-size": "22px",
+                    "font-weight": "700",
+                    "color": "White",
+                    "background-color": "#5b5fc7"
+                  },
+                  "txtContent": "@group.fieldData.displayValue"
+                },
+                {
+                  "elmType": "a",
+                  "style": {
+                    "height": "30px",
+                    "box-sizing": "border-box",
+                    "display": "flex",
+                    "align-items": "center",
+                    "justify-content": "center",
+                    "margin-right": "12px",
+                    "padding": "0px 12px",
+                    "border-radius": "6px",
+                    "font-size": "15px",
+                    "font-weight": "500",
+                    "color": "White",
+                    "text-decoration": "none",
+                    "background-color": "#5b5fc7"
+                  },
+                  "attributes": {
+                    "href": "=@currentWeb + '/Lists/GLOSSARY/AllItems.aspx?env=WebView'"
+                  },
+                  "txtContent": "⭡ Back to Top"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
